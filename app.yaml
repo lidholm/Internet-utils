@@ -5,9 +5,25 @@ api_version: 1
 threadsafe: yes
 
 handlers:
+# Static assets
 - url: /favicon\.ico
   static_files: favicon.ico
   upload: favicon\.ico
+
+- url: /js
+  static_dir: static/js
+
+- url: /libraries
+  static_dir: static/libraries
+
+- url: /css
+  static_dir: static/css
+
+- url: /images
+  static_dir: static/images
+
+- url: /html
+  static_dir: static/html
 
 - url: .*
   script: main.app

@@ -1,0 +1,43 @@
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+table {
+    margin: 0px auto;
+    height: 100%;
+}
+
+.square {
+    width: 300px;
+    height: 150px;
+}
+
+body {
+  background: #FFA500;
+}
+
+#content {
+  text-align:center;
+  font-size: x-large;
+  border: 1px solid #000;
+border-radius: 15px;
+padding: 10px;
+}
+
+#countdown p {
+  display: inline-block;
+  padding: 5px;
+  background: #FFA500;
+  margin: 0 0 0 0px;
+}
+
+#todo1 {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+}
+
+.header {
+  font-size: x-large;
+}

@@ -15,11 +15,10 @@
 # limitations under the License.
 #
 import webapp2
-
-class MainHandler(webapp2.RequestHandler):
-    def get(self):
-        self.response.write('Hello world!')
+import chicago  
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/chicago/put', chicago.PutHandler),
+    ('/chicago/get', chicago.GetHandler),
+    ('/chicago', chicago.HtmlHandler),
 ], debug=True)
