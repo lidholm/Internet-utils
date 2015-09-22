@@ -41,3 +41,12 @@ padding: 10px;
 .header {
   font-size: x-large;
 }
+
+textarea {
+  background: #FFA500;
+  border: none;
+}
+
+textarea:focus {
+  border: 1px solid black;
+}
