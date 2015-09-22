@@ -3,7 +3,7 @@ html, body {
     width: 100%;
 }
 
-table {
+tableOld {
     margin: 0px auto;
     height: 100%;
 }
@@ -21,8 +21,8 @@ body {
   text-align:center;
   font-size: x-large;
   border: 1px solid #000;
-border-radius: 15px;
-padding: 10px;
+  border-radius: 15px;
+  padding: 10px;
 }
 
 #countdown p {
@@ -35,7 +35,7 @@ padding: 10px;
 #todo1 {
   position: absolute;
   left: 20px;
-  top: 20px;
+  top: 130px;
 }
 
 .header {
@@ -50,3 +50,4 @@ textarea {
 textarea:focus {
   border: 1px solid black;
 }
+

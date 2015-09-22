@@ -1,37 +1,38 @@
-<html>
+<html ng-app="chicagoApp" xmlns="http://www.w3.org/1999/xhtml">
 
   <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="libraries/jquery.min.js"></script>
+    <script src="libraries/angular.min.js"></script>
     <script src="js/scripts.js"></script>
     <link rel="stylesheet" href="/css/styles.css" />
-
   </head>
 
-  <body>
+  <body ng-controller="ChicagoCtrl">
+    <table><tr><td class="square">
+      <div id="content">
+        Time left until I'm in Chicago:
+        <div id="countdown">
+          <p class="days">00</p>
+          <p class="timeRefDays">days</p>
+          <!--  
+          <p class="hours">00</p>
+          <p class="timeRefHours">hours</p>
+          <p class="minutes">00</p>
+          <p class="timeRefMinutes">minutes</p>
+          <p class="seconds">00</p>
+          <p class="timeRefSeconds">seconds</p>
+          -->
+        </div>
+      </div>
+    </td></tr></table>
 
-  <table><tr><td class="square">
-  <div id="content">
-  Time left until I'm in Chicago:
-  <div id="countdown">
-  <p class="days">00</p>
-  <p class="timeRefDays">days</p>
-<!--  <p class="hours">00</p>
-  <p class="timeRefHours">hours</p>
-  <p class="minutes">00</p>
-  <p class="timeRefMinutes">minutes</p>
-  <p class="seconds">00</p>
-  <p class="timeRefSeconds">seconds</p>
--->
-  </div>
-  </div>
-  </td></tr></table>
-
-  <div id="todo1">
-    <p class="header">Things to do</p>
-    <textarea rows="40" cols="40" border="0">
-    </textarea>
-  </div>
-
+    <div id="todo1">
+      <p class="header">Things to do</p>
+      <textarea rows="80" cols="80" border="0" ng-model="todo" ng-change='newValue()'>
+      </textarea>
+    </div>
 
   </body>
+</html>
+
 

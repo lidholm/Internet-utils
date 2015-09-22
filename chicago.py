@@ -23,6 +23,8 @@ from google.appengine.ext.webapp import template
 from google.appengine.api import memcache
 from google.appengine.ext import ndb
 
+
+
 class Message(ndb.Model):
     message = ndb.StringProperty()
 
@@ -44,7 +46,7 @@ class PutHandler(MessageHandler):
         message = self.getMessage()
         if message is None:
             message = self.createMessage()
-        message.message = self.request.get("hej")
+        message.message = self.request.get("message")
         message.put()
         
         self.response.write("Saved")
@@ -52,13 +54,51 @@ class PutHandler(MessageHandler):
 class GetHandler(MessageHandler):
     def get(self):
         message = self.getMessage()
-        self.response.write(str(message))
+        output = message.message.replace("*", "\n*")
+        self.response.write(output)
 
 class HtmlHandler(MessageHandler):
     def get(self):
-        path = os.path.join(os.path.dirname(__file__), "static","html","chicago.html")
-        f = open(path)
-        webpage = f.read()
-        f.close() 
-        self.response.out.write(webpage)
+        #path = os.path.join(os.path.dirname(__file__), "static","html","chicago.html")
+        #f = open(path)
+        #webpage = f.read()
+        #f.close()
+        webpage = """<html ng-app="chicagoApp" xmlns="http://www.w3.org/1999/xhtml">
 
+  <head>
+    <title>Chicago</title>
+    <script src="libraries/jquery.min.js"></script>
+    <script src="libraries/angular.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+
+  <body ng-controller="ChicagoCtrl">
+    <table><tr><td class="square">
+      <div id="content">
+        Time left until I'm in Chicago:
+        <div id="countdown">
+          <p class="days">00</p>
+          <p class="timeRefDays">days</p>
+          <!--  
+          <p class="hours">00</p>
+          <p class="timeRefHours">hours</p>
+          <p class="minutes">00</p>
+          <p class="timeRefMinutes">minutes</p>
+          <p class="seconds">00</p>
+          <p class="timeRefSeconds">seconds</p>
+          -->
+        </div>
+      </div>
+    </td></tr></table>
+
+    <div id="todo1">
+      <p class="header">Things to do</p>
+      <textarea rows="80" cols="80" border="0" ng-model="todo" ng-change='newValue()'>
+      </textarea>
+    </div>
+
+  </body>
+</html>
+""" 
+        self.response.out.write(webpage)

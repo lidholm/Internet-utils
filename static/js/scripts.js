@@ -1,3 +1,52 @@
+
+
+var chicagoApp = angular.module('chicagoApp', []);
+
+chicagoApp.controller('ChicagoCtrl', function ($scope, $log, $compile, $window, $interval, $http) {
+    $scope.todoHasChanged = false;
+    $scope.todo = "";
+    
+    angular.element(document).ready(function () {
+    	init();
+    });
+    
+    function init() {
+    	$http.get('/chicago/get').
+		  then(function(response) {
+			  $scope.todo = response.data;
+		  }, function(errorResponse) {
+			  alert(errorResponse);
+		  });
+		
+    };
+    
+    $interval(callAtInterval, 1000);
+    
+    function callAtInterval() {
+    	if ($scope.todoHasChanged) {
+    		$http.get('/chicago/put?message=' + $scope.todo).
+    		  then(function(response) {
+    			  console.log("Saved " + response);
+    		  }, function(errorResponse) {
+    			  alert(errorResponse);
+    		  });
+    		
+    		console.log($scope.todo);
+        	$scope.todoHasChanged = false;
+    	}
+    }
+    
+    $scope.newValue = function() {
+    	$scope.todoHasChanged = true;
+    }
+});
+
+
+
+
+
+
+
 (function (e) {
   e.fn.countdown = function (t, n) {
   function i() {
