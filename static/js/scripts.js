@@ -10,28 +10,33 @@ chicagoApp.controller('ChicagoCtrl', function ($scope, $log, $compile, $window, 
     	init();
     });
     
+    String.prototype.replaceAll = function(s,r){return this.split(s).join(r)}
+    
     function init() {
     	$http.get('/chicago/get').
 		  then(function(response) {
-			  $scope.todo = response.data;
+		      var todo = response.data;
+	          todo = todo.replaceAll("%26", "&");
+			  $scope.todo = todo;
 		  }, function(errorResponse) {
 			  alert(errorResponse);
 		  });
-		
     };
     
-    $interval(callAtInterval, 1000);
+    $interval(saveTodos, 1000);
     
-    function callAtInterval() {
+    function saveTodos() {
     	if ($scope.todoHasChanged) {
-    		$http.get('/chicago/put?message=' + $scope.todo).
+    	    var todo = $scope.todo;
+    	    todo = todo.replaceAll("&", "%26");
+    		$http.get('/chicago/put?message=' + todo).
     		  then(function(response) {
     			  console.log("Saved " + response);
     		  }, function(errorResponse) {
     			  alert(errorResponse);
     		  });
     		
-    		console.log($scope.todo);
+    		console.log(todo);
         	$scope.todoHasChanged = false;
     	}
     }
