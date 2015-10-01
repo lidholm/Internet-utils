@@ -38,6 +38,12 @@ body {
   top: 130px;
 }
 
+#saveInfo {
+    position: absolute;
+    left: 250px;
+    top: 30px;
+}
+
 .header {
   font-size: x-large;
 }

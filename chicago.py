@@ -93,9 +93,11 @@ class HtmlHandler(MessageHandler):
     </td></tr></table>
 
     <div id="todo1">
+      
       <p class="header">Things to do</p>
       <textarea rows="80" cols="80" border="0" ng-model="todo" ng-change='newValue()'>
       </textarea>
+      <div id="saveInfo">{{ todoHasChanged ? 'Not saved!' : 'Saved' }}</div>
     </div>
 
   </body>
